@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CATEGORIES</title>
+</head>
+<body>
+<table>
+    <tr>
+        <th>Category Name</th>
+    </tr>
+    {%for ind in range(categories |length)%}
+      <tr>
+        <td>{{categories[ind].name}}</td>
+        <td>
+        <form action="/category/delete" method="post">
+            <input type="hidden" value={{categories[ind].category_id}} name="category_id">
+            <input type="submit" value="delete category">
+        </form>
+        </td>
+      </tr>
+    {% endfor %}
+</table>
+<form action="/category/add" method="post">
+    <input type="text" name="name">
+    <input type="submit" value="add category">
+</form>
+<form action="/login" method="get">
+    <input type="submit" value="Dashboard">
+</form>
+</body>
+</html>

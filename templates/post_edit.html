@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>EDIT POST</title>
+</head>
+<body>
+<form action="/post/edit" method="post">
+            <input type="text" value={{post.title}} name="title">
+            <input type="text" value={{post.content}} name="content">
+            <input type="date" value={{post.date}} name="date">
+            <select name="category_id">
+                {% for category in categories %}
+                {% if category.category_id == post.category.category_id %}
+                     <option selected="selected"  value="{{category.category_id}}">{{category.name}}</option>"
+                {% else %}
+                     <option value="{{category.category_id}}">{{category.name}}</option>"
+                {% endif %}
+                {% endfor %}
+            </select>
+            <input type="hidden" value={{post.post_id}} name="post_id">
+            <input type="submit" value="edit post">
+        </form>
+</body>
+</html>

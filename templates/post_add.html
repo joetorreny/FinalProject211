@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ADD POST</title>
+</head>
+<body>
+<form action="/post/add" method="post">
+    Title: <input type="text" name="title"><br>
+    Content: <input type="text" name="content"><br>
+    Date: <input type="date" name="date"><br>
+    <select name="category_id">
+        {% for category in categories %}
+        <option value="{{category.category_id}}">{{category.name}}</option>"
+        {% endfor %}
+    </select>
+    <input type="submit" value="add post">
+</form>
+</body>
+</html>

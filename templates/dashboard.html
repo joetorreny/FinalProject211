@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DASHBOARD</title>
+</head>
+<body>
+<form action="/show_un_published_posts" method="get">
+  <input type="submit" value="Show un publish posts">
+</form>
+<form action="/hide_un_published_posts" method="get">
+  <input type="submit" value="Hide un publish posts">
+</form>
+<table>
+    <tr>
+        <th>Post Title</th>
+        <th>Post Content</th>
+        <th>Post Date</th>
+        <th>Post Category</th>
+    </tr>
+    {%for ind in range(posts |length)%}
+      <tr>
+        <td>{{posts[ind].title}}</td>
+        <td>{{posts[ind].content}}</td>
+        <td>{{posts[ind].date}}</td>
+        <td>{{posts[ind].category.name}}</td>
+        <td>
+        <form action="/post/delete" method="post">
+            <input type="hidden" value={{posts[ind].post_id}} name="post_id">
+            <input type="submit" value="delete post">
+        </form>
+        </td>
+        <td>
+        <form action="/post/edit" method="get">
+            <input type="hidden" value={{posts[ind].title}} name="title">
+            <input type="hidden" value={{posts[ind].content}} name="content">
+            <input type="hidden" value={{posts[ind].date}} name="date">
+            <input type="hidden" value={{posts[ind].post_id}} name="post_id">
+            <input type="hidden" value={{posts[ind].category.category_id}} name="category_id">
+            <input type="hidden" value={{posts[ind].category.name}} name="name">
+            <input type="submit" value="edit post">
+        </form>
+        </td>
+        <td>
+        <form action="/post/un_publish" method="post">
+            <input type="hidden" value={{posts[ind].post_id}} name="post_id">
+            <input type="submit" value="un publish post">
+        </form>
+        </td>
+        <td>
+        <form action="/post/publish" method="post">
+            <input type="hidden" value={{posts[ind].post_id}} name="post_id">
+            <input type="submit" value="publish post">
+        </form>
+        </td>
+      </tr>
+    {% endfor %}
+</table>
+<form action="/post/add" method="get">
+    <input type="submit" value="add post">
+</form>
+<form action="/categories" method="get">
+    <input type="submit" value="categories">
+</form>
+</body>
+</html>
